@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Data Entry</title>
+  <style>
+    body { font-family: Arial; max-width: 600px; margin: 20px auto; }
+    input, button { margin: 8px 0; padding: 8px; }
+    ul { list-style: none; padding: 0; }
+    li { background: #f0f0f0; margin: 8px 0; padding: 10px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <h1>Personal Data Entry</h1>
+
+  <input type="text" id="name" placeholder="Name">
+  <input type="text" id="grade" placeholder="Grade/Score">
+  <button onclick="saveEntry()">Add Entry</button>
+
+  <h2>List</h2>
+  <ul id="list"></ul>
+
+  <button onclick="clearAll()">Clear All Data</button>
+
+  <script>
+    window.onload = loadEntries;
+
+    function saveEntry() {
+      const name = document.getElementById('name').value.trim();
+      const grade = document.getElementById('grade').value.trim();
+      if (!name || !grade) {
+        alert("Fill both fields!");
+        return;
+      }
+
+      // list
+      let entries = JSON.parse(localStorage.getItem('studentEntries')) || [];
+      entries.push({ name, grade, date: new Date().toLocaleString() });
+      localStorage.setItem('studentEntries', JSON.stringify(entries));
+      loadEntries();
+
+      document.getElementById('name').value = '';
+      document.getElementById('grade').value = '';
+    }
+
+    function loadEntries() {
+      const list = document.getElementById('list');
+      list.innerHTML = '';
+      const entries = JSON.parse(localStorage.getItem('studentEntries')) || [];
+
+      entries.forEach(entry => {
+        const li = document.createElement('li');
+        li.textContent = `${entry.name} - ${entry.grade} (${entry.date})`;
+        list.appendChild(li);
+      });
+    }
+
+    function clearAll() {
+      if (confirm("Delete everything?")) {
+        localStorage.removeItem('studentEntries');
+        loadEntries();
+      }
+    }
+  </script>
+
+</body>
+</html>
