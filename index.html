@@ -45,9 +45,11 @@
       const location = document.getElementById('location').value.trim();
       const grade    = document.getElementById('grade').value.trim();
 
-      if (!name) {alert("Name");
-        return;
+      if (!name) {
+      alert("Name");
+      return;
       }
+
 
       let entries = JSON.parse(localStorage.getItem('studentEntries')) || [];
       entries.push({
@@ -79,12 +81,15 @@
           Age: ${entry.age} | Gender: ${entry.gender} | Location: ${entry.location}<br>
           Grade/Score: ${entry.grade} (${entry.date})
         `;
-        list.appendChild(li);
-
-        
+       list.appendChild(li);
       });
     }
 
+    function clearAll() {
+      if (confirm("Delete everything?")) {
+        localStorage.removeItem('studentEntries');
+        loadEntries();
+      }
+    }
+  </script>
 
-
-    
