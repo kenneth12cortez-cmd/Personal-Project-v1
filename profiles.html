@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profiles</title>
+  <style>
+    body {
+      font-family: Arial; 
+      max-width: 600px; 
+      margin: 20px auto;
+      background: linear-gradient(to bottom, #e0f7e0, #ffffff);
+      background-repeat: no-repeat;  
+      background-attachment: fixed;  
+      
+      min-height: 100vh;
+
+    }
+    .content { background: white;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #f8f8f8;
+      margin: 12px 0;
+      padding: 12px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+    }
+    .back {
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="content">
+  <h1>Profiles</h1>
+    <h2>List</h2>
+    <ul id="list"></ul>
+  </div>
+
+  <div class="back">
+    <a href="index.html">Back to Home</a>
+  </div>
+
+  <script>
+
+    window.onload = function() {
+      const list = document.getElementById('list');
+      list.innerHTML = '';
+      const entries = JSON.parse(localStorage.getItem('studentEntries')) || [];
+
+      entries.forEach(entry => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <strong>${entry.name}</strong><br>
+          Age: ${entry.age} | Gender: ${entry.gender} | Location: ${entry.location}<br>
+          Grade/Score: ${entry.grade} (${entry.date})
+        `;
+        list.appendChild(li);
+      });
+    };
+  </script>
+
+
+
+</body>
+</html>
+
+
+
