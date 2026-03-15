@@ -23,29 +23,71 @@ li {
   border-radius: 4px;}
 li strong {
   font-size: 1.15em;
-  color: #006400; }
-    
+  color: #006400; } 
+.form-panel {
+  background: #f8fff8;
+  border: 1px solid #d0e8d0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+.list-panel {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+}
+.back-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: white;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 16px;
+}
+.back-btn:hover {
+  background: #f8f8f8;
+  border-color: #aaa;
+}
+.controls {
+  text-align: center;
+  margin-top: 20px;
+}
+.controls button,
+.controls a {
+  margin: 0 10px;
+}
+
+
   </style>
 </head>
 <body>
 
- <h1>Personal Data Entry</h1>
-
+  <div class="form-panel">
+  <h1>Personal Data Entry</h1>
   <input type="text" id="name" placeholder="Name">
   <input type="number" id="age" placeholder="Age">
   <select id="gender">
     <option value="" disabled selected>Gender</option>
     <option value="Male">Male</option>
     <option value="Female">Female</option>
-  </select>
+   </select>
   <input type="text" id="location" placeholder="Location (e.g. Quezon City)">
   <input type="text" id="grade" placeholder="Grade/Score">
   <button onclick="saveEntry()">Add Entry</button>
+  </div>
 
-  <h2>List</h2>
-  <ul id="list"></ul>
+  <div class="list-panel">
+    <h2>List</h2>
+    <ul id="list"></ul>
+  </div>
 
-  <button onclick="clearAll()">Clear data</button>
+  <div class="controls">
+    <button onclick="clearAll()">Clear data</button>
+    <a href="index.html" class="back-btn">Back to Home</a>
+  </div>
 
   <script>
     window.onload = loadEntries;
@@ -103,4 +145,5 @@ li strong {
       }
     }
   </script>
+
 
